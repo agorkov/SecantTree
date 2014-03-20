@@ -1,137 +1,138 @@
 unit UScript;
 
 interface
+
 procedure ProcessScript(ScriptFileName: string);
 
 implementation
+
 uses
   UGlobal, SysUtils, UImages, UTree, Forms;
 
-{procedure XLS(Folder: string; SheetNum, StrNum: byte);
-var
-ExcelApp: Variant;
-ExcelDoc: Variant;
-ExcelSht: Variant;
-begin
+{ procedure XLS(Folder: string; SheetNum, StrNum: byte);
+  var
+  ExcelApp: Variant;
+  ExcelDoc: Variant;
+  ExcelSht: Variant;
+  begin
   try
-    DecimalSeparator:='.';
-    ExcelApp:=CreateOleObject('Excel.Application');
-    ExcelApp.Visible:=true;
-    ExcelApp.DisplayAlerts:=False;
-    ExcelDoc:=ExcelApp.Workbooks.Open(ExtractFilePath(Application.ExeName)+'\stat.xlsx');
-    ExcelSht:=ExcelDoc.Worksheets[SheetNum].Select;
-    ExcelApp.Cells[4+StrNum,3]:=inttostr(Statistic.MaxTreeHeigth);
-    ExcelApp.Cells[4+StrNum,4]:=inttostr(Statistic.MinTreeHeigth);
-    ExcelApp.Cells[4+StrNum,5]:=floattostr(Statistic.AVGTreeHeigth);
-    ExcelApp.Cells[4+StrNum,6]:=floattostrf(Statistic.AVGCheckCount,ffFixed,6,5);
-    ExcelApp.Cells[4+StrNum,7]:=floattostrf(Statistic.AVGCheckCountR,ffFixed,6,5);
-    ExcelApp.Cells[4+StrNum,8]:=floattostrf(Statistic.Redundancy,ffFixed,6,5);
-    ExcelApp.Cells[4+StrNum,9]:=inttostr(Statistic.Q);
-    ExcelDoc.Save;
-    ExcelDoc.Close;
-    ExcelApp.Quit;
+  DecimalSeparator:='.';
+  ExcelApp:=CreateOleObject('Excel.Application');
+  ExcelApp.Visible:=true;
+  ExcelApp.DisplayAlerts:=False;
+  ExcelDoc:=ExcelApp.Workbooks.Open(ExtractFilePath(Application.ExeName)+'\stat.xlsx');
+  ExcelSht:=ExcelDoc.Worksheets[SheetNum].Select;
+  ExcelApp.Cells[4+StrNum,3]:=inttostr(Statistic.MaxTreeHeigth);
+  ExcelApp.Cells[4+StrNum,4]:=inttostr(Statistic.MinTreeHeigth);
+  ExcelApp.Cells[4+StrNum,5]:=floattostr(Statistic.AVGTreeHeigth);
+  ExcelApp.Cells[4+StrNum,6]:=floattostrf(Statistic.AVGCheckCount,ffFixed,6,5);
+  ExcelApp.Cells[4+StrNum,7]:=floattostrf(Statistic.AVGCheckCountR,ffFixed,6,5);
+  ExcelApp.Cells[4+StrNum,8]:=floattostrf(Statistic.Redundancy,ffFixed,6,5);
+  ExcelApp.Cells[4+StrNum,9]:=inttostr(Statistic.Q);
+  ExcelDoc.Save;
+  ExcelDoc.Close;
+  ExcelApp.Quit;
   finally
 
   end;
-end;}
+  end; }
 
 procedure ProcessScript(ScriptFileName: string);
 var
-f: TextFile;
-str: string;
+  f: TextFile;
+  str: string;
 begin
-  AssignFile(f,ScriptFileName);
+  AssignFile(f, ScriptFileName);
   reset(f);
   while not EOF(f) do
   begin
 
-    readln(f,str);
+    readln(f, str);
 
-    if str='N=' then
+    if str = 'N=' then
     begin
-      readln(f,str);
-      AIS.n:=strtoint(str);
+      readln(f, str);
+      AIS.n := strtoint(str);
     end;
-    if str='M=' then
+    if str = 'M=' then
     begin
-      readln(f,str);
-      AIS.m:=strtoint(str);
+      readln(f, str);
+      AIS.m := strtoint(str);
     end;
-    if str='K=' then
+    if str = 'K=' then
     begin
-      readln(f,str);
-      AIS.k:=strtoint(str);
+      readln(f, str);
+      AIS.k := strtoint(str);
     end;
-    if str='IMGMODE=' then
+    if str = 'IMGMODE=' then
     begin
-      readln(f,str);
-      AIS.ImgMode:=strtoint(str);
+      readln(f, str);
+      AIS.ImgMode := strtoint(str);
     end;
-    if str='RND=' then
+    if str = 'RND=' then
     begin
-      readln(f,str);
-      RND:=str;
+      readln(f, str);
+      RND := str;
     end;
-    if str='ALPHA=' then
+    if str = 'ALPHA=' then
     begin
-      readln(f,str);
-      Alpha:=strtofloat(str);
+      readln(f, str);
+      Alpha := strtofloat(str);
     end;
-    if str='BETA=' then
+    if str = 'BETA=' then
     begin
-      readln(f,str);
-      Beta:=strtofloat(str);
+      readln(f, str);
+      Beta := strtofloat(str);
     end;
-    if str='LOADIMG' then
+    if str = 'LOADIMG' then
     begin
-      readln(f,str);
+      readln(f, str);
       UImages.LoadImagesFromFile(str);
     end;
-    if str='GENERATE' then
+    if str = 'GENERATE' then
     begin
       UImages.GetArray;
     end;
-    if str='E=' then
+    if str = 'E=' then
     begin
-      readln(f,str);
-      E:=strtofloat(str);
+      readln(f, str);
+      E := strtofloat(str);
     end;
-    if str='LOADTREE' then
+    if str = 'LOADTREE' then
     begin
-      readln(f,str);
+      readln(f, str);
       UTree.LoadTreeFromFile(str);
     end;
-    if str='RUN' then
+    if str = 'RUN' then
     begin
       UTree.BuildTree;
     end;
-    if str='SAVESTATISTIC' then
+    if str = 'SAVESTATISTIC' then
     begin
-      readln(f,str);
-      SaveStatisticToFile(ExtractFilePath(Application.ExeName)+str);
+      readln(f, str);
+      SaveStatisticToFile(ExtractFilePath(Application.ExeName) + str);
     end;
-    if str='MAXSECDIGIT=' then
+    if str = 'MAXSECDIGIT=' then
     begin
-      readln(f,str);
-      UGlobal.MaxSecDigit:=strtoint(str);
+      readln(f, str);
+      UGlobal.MaxSecDigit := strtoint(str);
     end;
-    if str='SAVEIMG' then
+    if str = 'SAVEIMG' then
     begin
-      readln(f,str);
+      readln(f, str);
       SaveImagesToFile(str);
     end;
-    if str='SAVETREE' then
+    if str = 'SAVETREE' then
     begin
-      readln(f,str);
-      SaveTreeToFile(ExtractFilePath(Application.ExeName)+str);
+      readln(f, str);
+      SaveTreeToFile(ExtractFilePath(Application.ExeName) + str);
     end;
-    if str='EXIT' then
+    if str = 'EXIT' then
     begin
       Halt(0);
     end;
   end;
   CloseFile(f);
 end;
-
 
 end.

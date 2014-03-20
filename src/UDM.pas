@@ -42,6 +42,7 @@ var
 implementation
 
 {$R *.dfm}
+
 uses
   Forms, UFSettings, UFMain, UImages, UTree, UGlobal, UFRecognition, UScript;
 
@@ -52,10 +53,10 @@ end;
 
 procedure TDM.NRunScriptClick(Sender: TObject);
 begin
-  UDM.DM.OD1.Filter:='Ñêðèïò|*.txt';
+  UDM.DM.OD1.Filter := 'Ñêðèïò|*.txt';
   if OD1.Execute then
     UScript.ProcessScript(OD1.FileName);
-  UDM.DM.OD1.Filter:='';
+  UDM.DM.OD1.Filter := '';
 end;
 
 procedure TDM.NExitClick(Sender: TObject);
@@ -70,48 +71,48 @@ end;
 
 procedure TDM.NSaveImagesClick(Sender: TObject);
 begin
-  UDM.DM.SD1.Filter:='Ìàññèâ îáðàçîâ|*.img';
+  UDM.DM.SD1.Filter := 'Ìàññèâ îáðàçîâ|*.img';
   if SD1.Execute then
   begin
-    if pos('.img',SD1.FileName)=0 then
-      SD1.FileName:=SD1.FileName+'.img';
+    if pos('.img', SD1.FileName) = 0 then
+      SD1.FileName := SD1.FileName + '.img';
     UImages.SaveImagesToFile(SD1.FileName);
   end;
-  UDM.DM.OD1.Filter:='';
+  UDM.DM.OD1.Filter := '';
 end;
 
 procedure TDM.NLoadImagesClick(Sender: TObject);
 begin
-  UDM.DM.OD1.Filter:='Ìàññèâ îáðàçîâ|*.img';
+  UDM.DM.OD1.Filter := 'Ìàññèâ îáðàçîâ|*.img';
   if OD1.Execute then
   begin
     UImages.LoadImagesFromFile(OD1.FileName);
-    UGlobal.UpDateMode(true,false);
+    UGlobal.UpDateMode(true, false);
   end;
-  UDM.DM.OD1.Filter:='';
+  UDM.DM.OD1.Filter := '';
 end;
 
 procedure TDM.NSaveTreeClick(Sender: TObject);
 begin
-  UDM.DM.SD1.Filter:='Äåðåâî|*.tree';
+  UDM.DM.SD1.Filter := 'Äåðåâî|*.tree';
   if SD1.Execute then
   begin
-    if pos('.tree',SD1.FileName)=0 then
-      SD1.FileName:=SD1.FileName+'.tree';
+    if pos('.tree', SD1.FileName) = 0 then
+      SD1.FileName := SD1.FileName + '.tree';
     UTree.SaveTreeToFile(SD1.FileName);
   end;
-  UDM.DM.SD1.Filter:='';
+  UDM.DM.SD1.Filter := '';
 end;
 
 procedure TDM.NLoadTreeClick(Sender: TObject);
 begin
-  UDM.DM.OD1.Filter:='Äåðåâî|*.tree';
+  UDM.DM.OD1.Filter := 'Äåðåâî|*.tree';
   if OD1.Execute then
   begin
     UTree.LoadTreeFromFile(OD1.FileName);
-    UGlobal.UpDateMode(true,true);
+    UGlobal.UpDateMode(true, true);
   end;
-  UDM.DM.OD1.Filter:='';
+  UDM.DM.OD1.Filter := '';
 end;
 
 end.
