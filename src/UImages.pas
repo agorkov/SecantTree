@@ -103,6 +103,7 @@ procedure GetArray;
     p: array of real;
     minP, maxP, A, B: real;
   begin
+    RandSeed := 1000; // TODO: Убрать потом
     SetLength(p, AIS.m + 1);
     if pos('x', Rnd) = 0 then
     begin
@@ -244,9 +245,12 @@ procedure GetArray;
 
 begin
   case AIS.ImgMode of
-  1: GetRandomAlphabet;
-  2: GetRandomSystem;
-  3: GetSymmetricArray;
+    1:
+      GetRandomAlphabet;
+    2:
+      GetRandomSystem;
+    3:
+      GetSymmetricArray;
   end; { case }
 end;
 

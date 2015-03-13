@@ -1,8 +1,8 @@
 object FMain: TFMain
   Left = 0
   Top = 0
-  Caption = #1055#1086#1089#1090#1088#1086#1077#1085#1080#1077' '#1073#1080#1085#1072#1088#1085#1086#1075#1086' '#1076#1077#1088#1077#1074#1072
-  ClientHeight = 612
+  Caption = #1055#1086#1089#1090#1088#1086#1077#1085#1080#1077' '#1076#1077#1088#1077#1074#1072' '#1089#1077#1082#1091#1097#1080#1093' '#1092#1091#1085#1082#1094#1080#1081
+  ClientHeight = 593
   ClientWidth = 404
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -46,14 +46,14 @@ object FMain: TFMain
   object Splitter1: TSplitter
     Left = 161
     Top = 361
-    Height = 214
+    Height = 195
     ExplicitLeft = 24
     ExplicitTop = 184
     ExplicitHeight = 100
   end
   object PStatus: TPanel
     Left = 0
-    Top = 575
+    Top = 556
     Width = 404
     Height = 37
     Align = alBottom
@@ -90,21 +90,21 @@ object FMain: TFMain
     Left = 164
     Top = 361
     Width = 240
-    Height = 214
+    Height = 195
     Align = alClient
     TabOrder = 1
     object PArray: TPanel
       Left = 1
       Top = 1
       Width = 238
-      Height = 158
+      Height = 139
       Align = alClient
       TabOrder = 0
       object SG: TStringGrid
         Left = 1
         Top = 1
         Width = 236
-        Height = 156
+        Height = 137
         Align = alClient
         ColCount = 1
         DefaultColWidth = 20
@@ -119,7 +119,7 @@ object FMain: TFMain
     end
     object PArrayInfo: TPanel
       Left = 1
-      Top = 159
+      Top = 140
       Width = 238
       Height = 54
       Align = alBottom
@@ -297,14 +297,14 @@ object FMain: TFMain
     Left = 0
     Top = 361
     Width = 161
-    Height = 214
+    Height = 195
     Align = alLeft
     TabOrder = 3
     object FTree: TTreeView
       Left = 1
       Top = 1
       Width = 159
-      Height = 212
+      Height = 193
       Align = alClient
       Indent = 19
       TabOrder = 0
